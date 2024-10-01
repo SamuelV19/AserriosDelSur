@@ -1,0 +1,9 @@
+
+<div class="products-list">
+  <% @inventories.each do |inventory| %>
+    <div class="product-container">
+      <div class="product-name"><%= inventory.name %></div>
+      <div class="product-price"><%= number_to_currency(inventory.price) %></div>
+    </div>
+  <% end %>
+</div>

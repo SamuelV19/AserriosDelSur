@@ -1,0 +1,26 @@
+<h1>Historial de Transacciones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Inventario</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Comprador/Proveedor</th>
+      <th>Tipo de Transacción</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.inventory.name %></td>
+        <td><%= transaction.quantity %></td>
+        <td><%= number_to_currency(transaction.price) %></td>
+        <td><%= transaction.buyer_or_supplier %></td>
+        <td><%= transaction.transaction_type.capitalize %></td>
+        <td><%= transaction.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+<h1>Nueva Transacción</h1>
+
+<div class="form-container">
+  <%= form_with model: @transaction do |f| %>
+    <div>
+      <%= f.label :inventory_id, "Seleccionar Inventario" %>
+      <%= f.collection_select :inventory_id, @inventories, :id, :name %>
+    </div>
+    <div>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity %>
+    </div>
+    <div>
+      <%= f.label :price %>
+      <%= f.number_field :price %>
+    </div>
+    <div>
+      <%= f.label :buyer_or_supplier %>
+      <%= f.text_field :buyer_or_supplier %>
+    </div>
+    <div>
+      <%= f.label :transaction_type %>
+      <%= f.select :transaction_type, [['Compra', 'purchase'], ['Venta', 'sale']] %>
+    </div>
+    <%= f.submit "Guardar Transacción" %>
+  <% end %>
+</div>
