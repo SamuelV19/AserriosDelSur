@@ -13,8 +13,11 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.price = @transaction.inventory.price if @transaction.inventory
+    @transaction.total_price = @transaction.price * @transaction.quantity
+
     if @transaction.save
-      redirect_to transactions_path, notice: 'Transacción creada exitosamente.'
+      redirect_to transactions_path, notice: 'Transacción creada correctamente.'
     else
       render :new
     end

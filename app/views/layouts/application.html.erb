@@ -20,12 +20,11 @@
   <body>
     <<nav>
   <ul>
-    <li><%= link_to 'Nuestros Productos', home_index_path %></li>
-    <li><%= link_to 'Nosotros' %></li>
     <li><%= link_to 'Login', new_user_session_path unless user_signed_in? %></li>
     
     <% if user_signed_in? && current_user.has_role?(:moderator) %>
       <li><%= link_to 'Compra/Venta', new_transaction_path %></li>
+      <li><%= link_to 'Historial', transactions_path %></li>
     <% end %>
 
      <% if user_signed_in? %>
@@ -33,10 +32,6 @@
     <% end %>
   </ul>
 </nav>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <%= yield %>
   </body>
 </html>

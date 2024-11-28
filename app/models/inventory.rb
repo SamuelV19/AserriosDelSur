@@ -6,7 +6,7 @@ class Inventory < ApplicationRecord
   validates :price, presence: true, numericality: true
 
   def self.ransackable_attributes(auth_object = nil)
-
+    # Excluye la imagen de las búsquedas
     ["created_at", "id", "name", "price", "stock", "updated_at"]
   end
 

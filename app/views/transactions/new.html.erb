@@ -1,27 +1,42 @@
-<h1>Nueva Transacción</h1>
-
 <div class="form-container">
   <%= form_with model: @transaction do |f| %>
+    <div>
+      <%= f.label :transaction_type, "Tipo de Transacción" %>
+      <%= f.select :transaction_type, [['Compra', 'purchase'], ['Venta', 'sale']], {}, { id: 'transaction_type_select' } %>
+    </div>
+
+    <!-- Campos comunes -->
     <div>
       <%= f.label :inventory_id, "Seleccionar Inventario" %>
       <%= f.collection_select :inventory_id, @inventories, :id, :name %>
     </div>
     <div>
-      <%= f.label :quantity %>
+      <%= f.label :quantity, "Cantidad" %>
       <%= f.number_field :quantity %>
     </div>
-    <div>
-      <%= f.label :price %>
-      <%= f.number_field :price %>
+  
+    <!-- Campos dinámicos según el tipo de transacción -->
+    <div id="buyer_or_supplier_div">
+      <%= f.label :buyer_or_supplier, "Proveedor" %>
+      <%= f.text_field :buyer_or_supplier, placeholder: "Nombre del Proveedor" %>
     </div>
-    <div>
-      <%= f.label :buyer_or_supplier %>
-      <%= f.text_field :buyer_or_supplier %>
+
+    <div id="client_or_customer_div" style="display: none;">
+      <%= f.label :buyer_or_supplier, "Cliente" %>
+      <%= f.text_field :buyer_or_supplier, placeholder: "Nombre del Cliente" %>
     </div>
-    <div>
-      <%= f.label :transaction_type %>
-      <%= f.select :transaction_type, [['Compra', 'purchase'], ['Venta', 'sale']] %>
+
+    <!-- Otros campos específicos según la transacción -->
+    <div id="extra_fields_for_purchase" style="display: none;">
+      <%= f.label :purchase_details, "Detalles de Compra" %>
+      <%= f.text_area :purchase_details, placeholder: "Detalles adicionales de la compra" %>
     </div>
+
+    <div id="extra_fields_for_sale" style="display: none;">
+      <%= f.label :sale_details, "Detalles de Venta" %>
+      <%= f.text_area :sale_details, placeholder: "Detalles adicionales de la venta" %>
+    </div>
+
     <%= f.submit "Guardar Transacción" %>
   <% end %>
 </div>

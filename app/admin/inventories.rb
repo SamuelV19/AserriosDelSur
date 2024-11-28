@@ -5,7 +5,7 @@ ActiveAdmin.register Inventory do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :stock, :price
+  permit_params :name, :stock, :price, :image
   # or
   #
   # permit_params do
